@@ -15,16 +15,17 @@ static const char *fonts[]         = { "monospace:pixelsize=12" };
 static const char dmenufont[]      = "monospace:pixelsize=12";
 
 /* -- colors -- */
-static const char col_gray1[]      = "#222222";
-static const char col_gray2[]      = "#444444";
-static const char col_gray3[]      = "#bbbbbb";
-static const char col_gray4[]      = "#eeeeee";
-static const char col_cyan[]       = "#005577";
+static const char col_normbg[]     = "#dddddd";
+static const char col_normfg[]     = "#111111";
+static const char col_normborder[] = "#444444";
+static const char col_selbg[]      = "#222222";
+static const char col_selfg[]      = "#ffa64f";
+static const char col_selborder[]  = "#0066ff";
 
 /* -- fg - bg - border -- */
 static const char *colors[][3]     = {
-    [SchemeNorm] = { col_gray3, "#000000", col_gray2 },
-    [SchemeSel]  = { "#ffa64f", "#404040", "#0066ff" },
+    [SchemeNorm] = { col_normfg, col_normbg, col_normborder },
+    [SchemeSel]  = { col_selfg, col_selbg, col_selborder},
 };
 
 /* -- tags -- */
