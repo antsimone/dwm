@@ -202,6 +202,9 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 	                       DefaultColormap(drw->dpy, drw->screen),
 	                       clrname, dest))
 		die("error, cannot allocate color '%s'", clrname);
+
+	dest->pixel |= 0xff << 24; // argb
+
 }
 
 /* Wrapper to create color schemes. The caller has to call free(3) on the
@@ -228,8 +231,7 @@ drw_setfontset(Drw *drw, Fnt *set)
 		drw->fonts = set;
 }
 
-void
-drw_setscheme(Drw *drw, Clr *scm)
+void drw_setscheme(Drw *drw, Clr *scm)
 {
 	if (drw)
 		drw->scheme = scm;
