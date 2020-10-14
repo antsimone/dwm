@@ -68,7 +68,8 @@ static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in sp
 static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *termcmd[]  = { "st", NULL };
 static const char *firefox[]  = { "firefox", NULL };
-static const char *pcmanfm[]  = { "pcmanfm", NULL};
+static const char *pcmanfm[]  = { "pcmanfm", NULL };
+static const char *emacs[]    = { "emacs", NULL };
 
 /* -- custom functions declarations -- */
 static void shiftview(const Arg *arg); /* shift tags view */
@@ -93,6 +94,7 @@ static Key keys[] = {
         { MODKEY,           XK_Return,                spawn,      {.v = termcmd } },
         { MODKEY,           XK_comma,                 spawn,      {.v = firefox } },
         { MODKEY,           XK_f,                     spawn,      {.v = pcmanfm } },
+        { MODKEY,           XK_e,                     spawn,      {.v = emacs } },
         { MODKEY,           XK_t,                     setlayout,  {.v = &layouts[0] } },
         { MODKEY,           XK_m,                     setlayout,  {.v = &layouts[1] } },
         { MODKEY,           XK_space,                 setlayout,  {0 } },
