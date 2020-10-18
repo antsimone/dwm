@@ -15,7 +15,7 @@ static const char *fonts[]         = { "monospace:pixelsize=12" };
 static const char dmenufont[]      = "monospace:pixelsize=12";
 
 /* -- colors -- */
-#include "themes/dune-light-theme.h"
+#include "themes/dune-dark-theme.h"
 
 /* -- fg - bg - border -- */
 static const char *colors[][3]     = {
