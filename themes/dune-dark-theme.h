@@ -1,4 +1,4 @@
-static const char col_normbg[]     = "#222222";
+static const char col_normbg[]     = "#000000";
 static const char col_normfg[]     = "#eeeeee";
 static const char col_normborder[] = "#444444";
 static const char col_selbg[]      = "#404040";

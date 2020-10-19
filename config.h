@@ -48,10 +48,10 @@ static const Rule rules[] = {
 /* -- key definitions -- */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-{ MODKEY,                       KEY,      toggleview,     {.ui = 1 << TAG} }, \
-{ MODKEY|ControlMask,           KEY,      view,           {.ui = 1 << TAG} }, \
-{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY, view, {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY, toggleview,       {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY, tag,  {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY, toggletag,        {.ui = 1 << TAG} },
 
 /* -- added keysym -- */
 #define XF86XK_MonBrightnessDown 0x1008ff03
@@ -127,10 +127,10 @@ static Button buttons[] = {
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        toggleview,     {0} },
-	{ ClkTagBar,            0,              Button3,        view,           {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+	{ ClkTagBar,            0,              Button1,        view,           {0} },
+	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,         Button1,        toggletag,      {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        tag,            {0} },
 };
 
 /* -- custom functions -- */
