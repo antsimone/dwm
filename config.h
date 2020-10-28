@@ -59,6 +59,7 @@ static const Rule rules[] = {
 #define XF86XK_AudioMute    	 0x1008ff12
 #define XF86XK_AudioLowerVolume  0x1008ff11
 #define XF86XK_AudioRaiseVolume  0x1008ff13
+#define XK_egrave                0x00e8 
 
 /* -- shell commands -- */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -94,7 +95,7 @@ static Key keys[] = {
         { MODKEY,           XK_Return,                spawn,      {.v = termcmd } },
         { MODKEY,           XK_comma,                 spawn,      {.v = firefox } },
         { MODKEY,           XK_f,                     spawn,      {.v = pcmanfm } },
-        { MODKEY,           XK_e,                     spawn,      {.v = emacs } },
+        { MODKEY,           XK_egrave,                spawn,      {.v = emacs } },
         { MODKEY,           XK_t,                     setlayout,  {.v = &layouts[0] } },
         { MODKEY,           XK_m,                     setlayout,  {.v = &layouts[1] } },
         { MODKEY,           XK_space,                 setlayout,  {0 } },
