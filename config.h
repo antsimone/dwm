@@ -70,7 +70,7 @@ static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *termcmd[]  = { "st", NULL };
 static const char *firefox[]  = { "firefox", NULL };
 static const char *pcmanfm[]  = { "pcmanfm", NULL };
-static const char *emacs[]    = { "emacs", NULL };
+static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
 
 /* -- custom functions declarations -- */
 static void shiftview(const Arg *arg); /* shift tags view */
