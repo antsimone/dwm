@@ -1,6 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
-/* -- window sizing -- */
+/* window sizing */
 static const unsigned int borderpx = 2;    /* border pixel of windows */
 static const unsigned int snap     = 32;   /* snap pixel */
 static const unsigned int gappx    = 0;    /* gap pixel between windows */
@@ -8,33 +8,36 @@ static const float mfact           = 0.55; /* factor of master area size [0.05..
 static const int nmaster           = 1;    /* number of clients in master area */
 static const int resizehints       = 0;    /* 1 means respect size hints in tiled resizals */
 
-/* -- bar -- */
+/* bar */
 static const int showbar           = 1;    /* 0 means no bar */
 static const int topbar            = 1;    /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:pixelsize=12" };
-static const char dmenufont[]      = "monospace:pixelsize=12";
 
-/* -- colors -- */
-#include "themes/dune-dark-theme.h"
-
-/* -- fg - bg - border -- */
-static const char *colors[][3]     = {
-	[SchemeNorm] = { col_normfg, col_normbg, col_normborder },
-	[SchemeSel]  = { col_selfg, col_selbg, col_selborder},
+/* colors */
+static const char col_gray1[]       = "#000000";
+static const char col_gray2[]       = "#444444";
+static const char col_gray3[]       = "#eeeeee";
+static const char col_gray4[]       = "#ffa64f";
+static const char col_cyan[]        = "#0066ff";
+static const char *colors[][3]      = {
+	/*               fg         bg         border   */
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
 };
 
-/* -- tags -- */
-static const char *tags[] = { "1", "2", "3", "4" };
+/* tagging */
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
-/* -- layouts -- */
+
+/* layouts */
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },       /* first entry is default */
-	{ "[M]",      monocle }, 
+	{ "[M]",      monocle },
 	{ "><>",      NULL },       /* no layout function means floating behavior */
 };
 
-/* -- window rules -- */
+/* window rules */
 static const Rule rules[] = {
 	/* xprop(1):
 	 * WM_CLASS(STRING) = instance, class
@@ -42,29 +45,28 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask    iscentered    isfloating   monitor */
 	{ "Gimp"    , NULL,       NULL,       0,            0,          1,           -1 },
-	{ "Leafpad" , NULL,       NULL,       0,            1,          1,           -1 },
 };
 
-/* -- key definitions -- */
+/* key definitions */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 { MODKEY,                       KEY, view, {.ui = 1 << TAG} }, \
-{ MODKEY|ControlMask,           KEY, toggleview,       {.ui = 1 << TAG} }, \
-{ MODKEY|ShiftMask,             KEY, tag,  {.ui = 1 << TAG} }, \
-{ MODKEY|ControlMask|ShiftMask, KEY, toggletag,        {.ui = 1 << TAG} },
+{ MODKEY|ControlMask,           KEY, toggleview, {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY, tag, {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY, toggletag, {.ui = 1 << TAG} },
 
-/* -- added keysym -- */
+/* keysym */
 #define XF86XK_MonBrightnessDown 0x1008ff03
 #define XF86XK_MonBrightnessUp   0x1008ff02
 #define XF86XK_AudioMute    	 0x1008ff12
 #define XF86XK_AudioLowerVolume  0x1008ff11
 #define XF86XK_AudioRaiseVolume  0x1008ff13
-#define XK_egrave                0x00e8 
+#define XK_egrave                0x00e8
 
-/* -- shell commands -- */
+/* shell commands */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* -- commands -- */
+/* commands */
 static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *termcmd[]  = { "st", NULL };
@@ -72,17 +74,22 @@ static const char *firefox[]  = { "firefox", NULL };
 static const char *pcmanfm[]  = { "pcmanfm", NULL };
 static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
 
-/* -- custom functions declarations -- */
+/* custom functions declarations */
 static void shiftview(const Arg *arg); /* shift tags view */
 static void movestack(const Arg *arg); /* rotate windows in stack */
 
-/* -- key bindings --*/
+/* key bindings --*/
 static Key keys[] = {
     /* modifier                     key        function        argument */
         TAGKEYS(            XK_1,                                 0 )
         TAGKEYS(            XK_2,                                 1 )
         TAGKEYS(            XK_3,                                 2 )
         TAGKEYS(            XK_4,                                 3 )
+        TAGKEYS(            XK_5,                                 4 )
+        TAGKEYS(            XK_6,                                 5 )
+        TAGKEYS(            XK_7,                                 6 )
+        TAGKEYS(            XK_8,                                 7 )
+        TAGKEYS(            XK_9,                                 8 )
         { MODKEY|ShiftMask, XK_period,                spawn,      SHCMD("dmenu_shutdown") },
         { 0,                XF86XK_MonBrightnessUp,   spawn,      SHCMD("xbacklight -inc 10") },
         { 0,                XF86XK_MonBrightnessDown, spawn,      SHCMD("xbacklight -dec 10") },
@@ -95,7 +102,6 @@ static Key keys[] = {
         { MODKEY,           XK_Return,                spawn,      {.v = termcmd } },
         { MODKEY,           XK_comma,                 spawn,      {.v = firefox } },
         { MODKEY,           XK_f,                     spawn,      {.v = pcmanfm } },
-        { MODKEY,           XK_egrave,                spawn,      {.v = emacs } },
         { MODKEY,           XK_t,                     setlayout,  {.v = &layouts[0] } },
         { MODKEY,           XK_m,                     setlayout,  {.v = &layouts[1] } },
         { MODKEY,           XK_space,                 setlayout,  {0 } },
@@ -119,7 +125,7 @@ static Key keys[] = {
         { MODKEY|ShiftMask, XK_q,                     quit,       {0 } },
 };
 
-/* -- buttons -- */
+/* buttons */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
@@ -134,7 +140,7 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        tag,            {0} },
 };
 
-/* -- custom functions -- */
+/* custom functions */
 void
 movestack(const Arg *arg) {
 	Client *c = NULL, *p = NULL, *pc = NULL, *i;
@@ -189,11 +195,11 @@ shiftview(const Arg *arg) {
 	Arg shifted;
 
 	/* left circular shift */
-	if(arg->i > 0) 
+	if(arg->i > 0)
 		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
 			| (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
 	/* right circular shift */
-	else 
+	else
 		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
 			| selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
 
