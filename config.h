@@ -15,18 +15,18 @@ static const char *fonts[]         = { "monospace:pixelsize=10" };
 
 /* colors */
 static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#222222";
 static const char col_gray3[]       = "#eeeeee";
 static const char col_gray4[]       = "#ffa64f";
 static const char col_cyan[]        = "#0066ff";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+	/* fg bg border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 
 /* layouts */
@@ -86,10 +86,7 @@ static Key keys[] = {
         TAGKEYS(            XK_3,                                 2 )
         TAGKEYS(            XK_4,                                 3 )
         TAGKEYS(            XK_5,                                 4 )
-        TAGKEYS(            XK_6,                                 5 )
-        TAGKEYS(            XK_7,                                 6 )
-        TAGKEYS(            XK_8,                                 7 )
-        TAGKEYS(            XK_9,                                 8 )
+
         { MODKEY|ShiftMask, XK_period,                spawn,      SHCMD("dmenu_shutdown") },
         { 0,                XF86XK_MonBrightnessUp,   spawn,      SHCMD("xbacklight -inc 10") },
         { 0,                XF86XK_MonBrightnessDown, spawn,      SHCMD("xbacklight -dec 10") },
@@ -98,6 +95,7 @@ static Key keys[] = {
         { 0,                XF86XK_AudioRaiseVolume,  spawn,      SHCMD("pamixer -u && pamixer --allow-boost -i 10 && pkill -RTMIN+3 dwmblocks") },
         { 0,                XK_Print,                 spawn,      SHCMD("maim -u ~/pics/$(date +%s).png" ) },
         { MODKEY,           XK_Print,                 spawn,      SHCMD("maim -s -u | xclip -selection clipboard -t image/png -i" ) },
+
         { MODKEY,           XK_period,                spawn,      {.v = dmenucmd } },
         { MODKEY,           XK_Return,                spawn,      {.v = termcmd } },
         { MODKEY,           XK_comma,                 spawn,      {.v = firefox } },
