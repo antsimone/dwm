@@ -64,15 +64,20 @@ static const Rule rules[] = {
 #define XK_egrave                0x00e8
 
 /* shell commands */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define ShCmd(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL};
-static const char *termcmd[]  = { "st", NULL };
-static const char *firefox[]  = { "firefox", NULL };
-static const char *pcmanfm[]  = { "pcmanfm", NULL };
-static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
+static const char *shut[]     = { "dmenu_shutdown", NULL };
+static const char *term[]     = { "urxvt", NULL };
+static const char *browser[]  = { "firefox", NULL };
+static const char *fm[]       = { "pcmanfm", NULL };
+
+static const char *maim[]    = { "maim", "-u", "~/pics/$(date +%s).png", NULL };
+static const char *xbinc[]    = { "xbacklight", "-inc", "10", NULL };
+static const char *xbdec[]    = { "xbacklight", "-dec", "10", NULL };
+/* static const char *emacs[]    = { "emacsclient", "-ca", "", NULL }; */
 
 /* custom functions declarations */
 static void shiftview(const Arg *arg); /* shift tags view */
@@ -87,19 +92,22 @@ static Key keys[] = {
         TAGKEYS(            XK_4,                                 3 )
         TAGKEYS(            XK_5,                                 4 )
 
-        { MODKEY|ShiftMask, XK_period,                spawn,      SHCMD("dmenu_shutdown") },
-        { 0,                XF86XK_MonBrightnessUp,   spawn,      SHCMD("xbacklight -inc 10") },
-        { 0,                XF86XK_MonBrightnessDown, spawn,      SHCMD("xbacklight -dec 10") },
-        { 0,                XF86XK_AudioMute,         spawn,      SHCMD("pamixer -t && pkill -RTMIN+3 dwmblocks") },
-        { 0,                XF86XK_AudioLowerVolume,  spawn,      SHCMD("pamixer -u && pamixer --allow-boost -d 10 && pkill -RTMIN+3 dwmblocks") },
-        { 0,                XF86XK_AudioRaiseVolume,  spawn,      SHCMD("pamixer -u && pamixer --allow-boost -i 10 && pkill -RTMIN+3 dwmblocks") },
-        { 0,                XK_Print,                 spawn,      SHCMD("maim -u ~/pics/$(date +%s).png" ) },
-        { MODKEY,           XK_Print,                 spawn,      SHCMD("maim -s -u | xclip -selection clipboard -t image/png -i" ) },
-
-        { MODKEY,           XK_period,                spawn,      {.v = dmenucmd } },
-        { MODKEY,           XK_Return,                spawn,      {.v = termcmd } },
-        { MODKEY,           XK_comma,                 spawn,      {.v = firefox } },
-        { MODKEY,           XK_f,                     spawn,      {.v = pcmanfm } },
+        { MODKEY|ShiftMask, XK_period,                spawn,      {.v = shut} },
+        { 0,                XF86XK_MonBrightnessUp,   spawn,      {.v = xbinc} },
+        { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = xbdec} },
+        { 0,                XF86XK_AudioMute,         spawn,\
+            ShCmd("pamixer -t && pkill -RTMIN+3 dwmblocks") },
+        { 0,                XF86XK_AudioLowerVolume,  spawn,\
+            ShCmd("pamixer -u && pamixer --allow-boost -d 10 && pkill -RTMIN+3 dwmblocks") },
+        { 0,                XF86XK_AudioRaiseVolume,  spawn,\
+            ShCmd("pamixer -u && pamixer --allow-boost -i 10 && pkill -RTMIN+3 dwmblocks") },
+        { 0,                XK_Print,                 spawn,      {.v = maim} },
+        { MODKEY,           XK_Print,                 spawn,\
+            ShCmd("maim -s -u | xclip -selection clipboard -t image/png -i" ) },
+        { MODKEY,           XK_period,                spawn,      {.v = dmenucmd} },
+        { MODKEY,           XK_Return,                spawn,      {.v = term} },
+        { MODKEY,           XK_comma,                 spawn,      {.v = browser} },
+        { MODKEY,           XK_f,                     spawn,      {.v = fm} },
         { MODKEY,           XK_t,                     setlayout,  {.v = &layouts[0] } },
         { MODKEY,           XK_m,                     setlayout,  {.v = &layouts[1] } },
         { MODKEY,           XK_space,                 setlayout,  {0 } },
