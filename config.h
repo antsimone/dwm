@@ -11,7 +11,7 @@ static const int resizehints       = 0;    /* 1 means respect size hints in tile
 /* bar */
 static const int showbar           = 1;    /* 0 means no bar */
 static const int topbar            = 1;    /* 0 means bottom bar */
-static const char *fonts[]         = { "monospace:pixelsize=10" };
+static const char *fonts[]         = { "monospace:size=9" };
 
 /* colors */
 static const char col_gray1[]       = "#000000";
