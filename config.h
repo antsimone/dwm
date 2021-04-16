@@ -20,9 +20,9 @@ static const char col_gray3[]       = "#eeeeee";
 static const char col_gray4[]       = "#ffa64f";
 static const char col_cyan[]        = "#0066ff";
 static const char *colors[][3]      = {
-	/* fg bg border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
+    /* fg bg border   */
+    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+    [SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
 };
 
 /* tagging */
@@ -31,20 +31,20 @@ static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 /* layouts */
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile },       /* first entry is default */
-	{ "[M]",      monocle },
-	{ "><>",      NULL },       /* no layout function means floating behavior */
+    /* symbol     arrange function */
+    { "[]=",      tile },       /* first entry is default */
+    { "[M]",      monocle },
+    { "><>",      NULL },       /* no layout function means floating behavior */
 };
 
 /* window rules */
 static const Rule rules[] = {
-	/* xprop(1):
-	 * WM_CLASS(STRING) = instance, class
-	 * WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask    iscentered    isfloating   monitor */
-	{ "Gimp"    , NULL,       NULL,       0,            0,          1,           -1 },
+    /* xprop(1):
+     * WM_CLASS(STRING) = instance, class
+     * WM_NAME(STRING) = title
+     */
+    /* class      instance    title       tags mask    iscentered    isfloating   monitor */
+    { "Gimp"    , NULL,       NULL,       0,            0,          1,           -1 },
 };
 
 /* key definitions */
@@ -61,7 +61,6 @@ static const Rule rules[] = {
 #define XF86XK_AudioMute    	 0x1008ff12
 #define XF86XK_AudioLowerVolume  0x1008ff11
 #define XF86XK_AudioRaiseVolume  0x1008ff13
-#define XK_egrave                0x00e8
 
 /* shell commands */
 #define ShCmd(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -73,11 +72,10 @@ static const char *shut[]     = { "dmenu_shutdown", NULL };
 static const char *term[]     = { "urxvt", NULL };
 static const char *browser[]  = { "firefox", NULL };
 static const char *fm[]       = { "pcmanfm", NULL };
-
-static const char *maim[]    = { "maim", "-u", "~/pics/$(date +%s).png", NULL };
+static const char *maim[]     = { "maim", "-u", "~/pics/$(date +%s).png", NULL };
 static const char *xbinc[]    = { "xbacklight", "-inc", "10", NULL };
 static const char *xbdec[]    = { "xbacklight", "-dec", "10", NULL };
-/* static const char *emacs[]    = { "emacsclient", "-ca", "", NULL }; */
+static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
 
 /* custom functions declarations */
 static void shiftview(const Arg *arg); /* shift tags view */
@@ -86,7 +84,7 @@ static void movestack(const Arg *arg); /* rotate windows in stack */
 /* key bindings --*/
 static Key keys[] = {
     /* modifier                     key        function        argument */
-        TAGKEYS(            XK_1,                                 0 )
+    TAGKEYS(            XK_1,                                 0 )
         TAGKEYS(            XK_2,                                 1 )
         TAGKEYS(            XK_3,                                 2 )
         TAGKEYS(            XK_4,                                 3 )
@@ -106,10 +104,9 @@ static Key keys[] = {
             ShCmd("maim -s -u | xclip -selection clipboard -t image/png -i" ) },
         { MODKEY,           XK_period,                spawn,      {.v = dmenucmd} },
         { MODKEY,           XK_Return,                spawn,      {.v = term} },
+        { MODKEY,           XK_e,                     spawn,      {.v = emacs} },
         { MODKEY,           XK_comma,                 spawn,      {.v = browser} },
         { MODKEY,           XK_f,                     spawn,      {.v = fm} },
-        { MODKEY,           XK_t,                     setlayout,  {.v = &layouts[0] } },
-        { MODKEY,           XK_m,                     setlayout,  {.v = &layouts[1] } },
         { MODKEY,           XK_space,                 setlayout,  {0 } },
         { MODKEY,           XK_n,                     shiftview,  {.i = +1 } },
         { MODKEY,           XK_p,                     shiftview,  {.i = -1 } },
@@ -133,81 +130,81 @@ static Key keys[] = {
 
 /* buttons */
 static Button buttons[] = {
-	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button1,        zoom,           {0} },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        toggletag,      {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        tag,            {0} },
+    /* click                event mask      button          function        argument */
+    { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+    { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+    { ClkWinTitle,          0,              Button1,        zoom,           {0} },
+    { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+    { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+    { ClkTagBar,            0,              Button1,        view,           {0} },
+    { ClkTagBar,            0,              Button3,        toggleview,     {0} },
+    { ClkTagBar,            MODKEY,         Button1,        toggletag,      {0} },
+    { ClkTagBar,            MODKEY,         Button3,        tag,            {0} },
 };
 
 /* custom functions */
 void
 movestack(const Arg *arg) {
-	Client *c = NULL, *p = NULL, *pc = NULL, *i;
+    Client *c = NULL, *p = NULL, *pc = NULL, *i;
 
-	if(arg->i > 0) {
-		/* find the client after selmon->sel */
-		for(c = selmon->sel->next; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
-		if(!c)
-			for(c = selmon->clients; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+    if(arg->i > 0) {
+        /* find the client after selmon->sel */
+        for(c = selmon->sel->next; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+        if(!c)
+            for(c = selmon->clients; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
 
-	}
-	else {
-		/* find the client before selmon->sel */
-		for(i = selmon->clients; i != selmon->sel; i = i->next)
-			if(ISVISIBLE(i) && !i->isfloating)
-				c = i;
-		if(!c)
-			for(; i; i = i->next)
-				if(ISVISIBLE(i) && !i->isfloating)
-					c = i;
-	}
-	/* find the client before selmon->sel and c */
-	for(i = selmon->clients; i && (!p || !pc); i = i->next) {
-		if(i->next == selmon->sel)
-			p = i;
-		if(i->next == c)
-			pc = i;
-	}
+    }
+    else {
+        /* find the client before selmon->sel */
+        for(i = selmon->clients; i != selmon->sel; i = i->next)
+            if(ISVISIBLE(i) && !i->isfloating)
+                c = i;
+        if(!c)
+            for(; i; i = i->next)
+                if(ISVISIBLE(i) && !i->isfloating)
+                    c = i;
+    }
+    /* find the client before selmon->sel and c */
+    for(i = selmon->clients; i && (!p || !pc); i = i->next) {
+        if(i->next == selmon->sel)
+            p = i;
+        if(i->next == c)
+            pc = i;
+    }
 
-	/* swap c and selmon->sel selmon->clients in the selmon->clients list */
-	if(c && c != selmon->sel) {
-		Client *temp = selmon->sel->next==c?selmon->sel:selmon->sel->next;
-		selmon->sel->next = c->next==selmon->sel?c:c->next;
-		c->next = temp;
+    /* swap c and selmon->sel selmon->clients in the selmon->clients list */
+    if(c && c != selmon->sel) {
+        Client *temp = selmon->sel->next==c?selmon->sel:selmon->sel->next;
+        selmon->sel->next = c->next==selmon->sel?c:c->next;
+        c->next = temp;
 
-		if(p && p != c)
-			p->next = c;
-		if(pc && pc != selmon->sel)
-			pc->next = selmon->sel;
+        if(p && p != c)
+            p->next = c;
+        if(pc && pc != selmon->sel)
+            pc->next = selmon->sel;
 
-		if(selmon->sel == selmon->clients)
-			selmon->clients = c;
-		else if(c == selmon->clients)
-			selmon->clients = selmon->sel;
+        if(selmon->sel == selmon->clients)
+            selmon->clients = c;
+        else if(c == selmon->clients)
+            selmon->clients = selmon->sel;
 
-		arrange(selmon);
-	}
+        arrange(selmon);
+    }
 }
 
 void
 shiftview(const Arg *arg) {
-	Arg shifted;
+    Arg shifted;
 
-	/* left circular shift */
-	if(arg->i > 0)
-		shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
-			| (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
-	/* right circular shift */
-	else
-		shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
-			| selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
+    /* left circular shift */
+    if(arg->i > 0)
+        shifted.ui = (selmon->tagset[selmon->seltags] << arg->i)
+            | (selmon->tagset[selmon->seltags] >> (LENGTH(tags) - arg->i));
+    /* right circular shift */
+    else
+        shifted.ui = selmon->tagset[selmon->seltags] >> (- arg->i)
+            | selmon->tagset[selmon->seltags] << (LENGTH(tags) + arg->i);
 
-	view(&shifted);
+    view(&shifted);
 }
