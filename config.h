@@ -11,7 +11,7 @@ static const int resizehints       = 0;    /* 1 means respect size hints in tile
 /* bar */
 static const int showbar           = 1;    /* 0 means no bar */
 static const int topbar            = 1;    /* 0 means bottom bar */
-static const char *fonts[]         = { "monospace:size=9" };
+static const char *fonts[]         = { "monospace:pixelsize=12" };
 
 /* colors */
 static const char col_gray1[]       = "#000000";
@@ -69,7 +69,7 @@ static const Rule rules[] = {
 static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *shut[]     = { "dmenu_shutdown", NULL };
-static const char *term[]     = { "urxvt", NULL };
+static const char *term[]     = { "st", NULL };
 static const char *browser[]  = { "firefox", NULL };
 static const char *fm[]       = { "pcmanfm", NULL };
 static const char *maim[]     = { "maim", "-u", "~/pics/$(date +%s).png", NULL };
@@ -101,7 +101,7 @@ static Key keys[] = {
             ShCmd("pamixer -u && pamixer --allow-boost -i 10 && pkill -RTMIN+3 dwmblocks") },
         { 0,                XK_Print,                 spawn,      {.v = maim} },
         { MODKEY,           XK_Print,                 spawn,\
-            ShCmd("maim -s -u | xclip -selection clipboard -t image/png -i" ) },
+            ShCmd("maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i" ) },
         { MODKEY,           XK_period,                spawn,      {.v = dmenucmd} },
         { MODKEY,           XK_Return,                spawn,      {.v = term} },
         { MODKEY,           XK_e,                     spawn,      {.v = emacs} },
