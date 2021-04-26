@@ -14,15 +14,16 @@ static const int topbar            = 1;    /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:pixelsize=12" };
 
 /* colors */
-static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#222222";
-static const char col_gray3[]       = "#eeeeee";
-static const char col_gray4[]       = "#ffa64f";
-static const char col_cyan[]        = "#0066ff";
-static const char *colors[][3]      = {
-    /* fg bg border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, col_gray2,  col_cyan  },
+static const char col_normfg[]     = "#262626";
+static const char col_normbg[]     = "#87875f";
+static const char col_normborder[] = "#121212";
+static const char col_selfg[]      = "#87875f";
+static const char col_selbg[]      = "#121212";
+static const char col_selborder[]  = "#0066ff";
+
+static const char *colors[][3] = {
+  [SchemeNorm] = { col_normfg, col_normbg, col_normborder },
+  [SchemeSel]  = { col_selfg, col_selbg,  col_selborder  },
 };
 
 /* tagging */
@@ -77,55 +78,55 @@ static const char *xbinc[]    = { "xbacklight", "-inc", "10", NULL };
 static const char *xbdec[]    = { "xbacklight", "-dec", "10", NULL };
 static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
 
+#define VolMuteCmd "pamixer -t && pkill -RTMIN+3 dwmblocks"
+#define VolLowerCmd "pamixer -u && pamixer --allow-boost -d 10 && pkill -RTMIN+3 dwmblocks"
+#define VolRaiseCmd "pamixer -u && pamixer --allow-boost -i 10 && pkill -RTMIN+3 dwmblocks"
+#define ScreenCpyCmd "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i"
+
 /* custom functions declarations */
 static void shiftview(const Arg *arg); /* shift tags view */
 static void movestack(const Arg *arg); /* rotate windows in stack */
 
 /* key bindings --*/
 static Key keys[] = {
-    /* modifier                     key        function        argument */
-    TAGKEYS(            XK_1,                                 0 )
-        TAGKEYS(            XK_2,                                 1 )
-        TAGKEYS(            XK_3,                                 2 )
-        TAGKEYS(            XK_4,                                 3 )
-        TAGKEYS(            XK_5,                                 4 )
-
-        { MODKEY|ShiftMask, XK_period,                spawn,      {.v = shut} },
-        { 0,                XF86XK_MonBrightnessUp,   spawn,      {.v = xbinc} },
-        { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = xbdec} },
-        { 0,                XF86XK_AudioMute,         spawn,\
-            ShCmd("pamixer -t && pkill -RTMIN+3 dwmblocks") },
-        { 0,                XF86XK_AudioLowerVolume,  spawn,\
-            ShCmd("pamixer -u && pamixer --allow-boost -d 10 && pkill -RTMIN+3 dwmblocks") },
-        { 0,                XF86XK_AudioRaiseVolume,  spawn,\
-            ShCmd("pamixer -u && pamixer --allow-boost -i 10 && pkill -RTMIN+3 dwmblocks") },
-        { 0,                XK_Print,                 spawn,      {.v = maim} },
-        { MODKEY,           XK_Print,                 spawn,\
-            ShCmd("maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i" ) },
-        { MODKEY,           XK_period,                spawn,      {.v = dmenucmd} },
-        { MODKEY,           XK_Return,                spawn,      {.v = term} },
-        { MODKEY,           XK_e,                     spawn,      {.v = emacs} },
-        { MODKEY,           XK_comma,                 spawn,      {.v = browser} },
-        { MODKEY,           XK_f,                     spawn,      {.v = fm} },
-        { MODKEY,           XK_space,                 setlayout,  {0 } },
-        { MODKEY,           XK_n,                     shiftview,  {.i = +1 } },
-        { MODKEY,           XK_p,                     shiftview,  {.i = -1 } },
-        { MODKEY,           XK_j,                     focusstack, {.i = +1 } },
-        { MODKEY,           XK_k,                     focusstack, {.i = -1 } },
-        { MODKEY|ShiftMask, XK_j,                     movestack,  {.i = +1 } },
-        { MODKEY|ShiftMask, XK_k,                     movestack,  {.i = -1 } },
-        { MODKEY,           XK_h,                     setmfact,   {.f = -0.05 } },
-        { MODKEY,           XK_l,                     setmfact,   {.f = +0.05 } },
-        { MODKEY,           XK_i,                     incnmaster, {.i = +1 } },
-        { MODKEY,           XK_d,                     incnmaster, {.i = -1 } },
-        { MODKEY,           XK_b,                     togglebar,  {0 } },
-        { MODKEY,           XK_c,                     killclient, {0 } },
-        { MODKEY,           XK_0,                     view,       {.ui = ~0 } },
-        { MODKEY,           XK_Tab,                   view,       {0 } },
-        { MODKEY|ShiftMask, XK_Return,                zoom,       {0 } },
-        { MODKEY|ShiftMask, XK_0,                     tag,        {.ui = ~0 } },
-        { MODKEY|ShiftMask, XK_comma,                 tagmon,     {.i = -1 } },
-        { MODKEY|ShiftMask, XK_q,                     quit,       {0 } },
+  /* modifier                     key        function        argument */
+  TAGKEYS(            XK_1,                                 0 )
+  TAGKEYS(            XK_2,                                 1 )
+  TAGKEYS(            XK_3,                                 2 )
+  TAGKEYS(            XK_4,                                 3 )
+  TAGKEYS(            XK_5,                                 4 )
+  { MODKEY|ShiftMask, XK_period,                spawn,      {.v = shut} },
+  { 0,                XF86XK_MonBrightnessUp,   spawn,      {.v = xbinc} },
+  { 0,                XF86XK_MonBrightnessDown, spawn,      {.v = xbdec} },
+  { 0,                XF86XK_AudioMute,         spawn,      ShCmd(VolMuteCmd) },
+  { 0,                XF86XK_AudioLowerVolume,  spawn,      ShCmd(VolLowerCmd) },
+  { 0,                XF86XK_AudioRaiseVolume,  spawn,      ShCmd(VolRaiseCmd) },
+  { 0,                XK_Print,                 spawn,      {.v = maim} },
+  { MODKEY,           XK_Print,                 spawn,      ShCmd(ScreenCpyCmd)},
+  { MODKEY,           XK_period,                spawn,      {.v = dmenucmd} },
+  { MODKEY,           XK_Return,                spawn,      {.v = term} },
+  { MODKEY,           XK_e,                     spawn,      {.v = emacs} },
+  { MODKEY,           XK_comma,                 spawn,      {.v = browser} },
+  { MODKEY,           XK_f,                     spawn,      {.v = fm} },
+  { MODKEY,           XK_space,                 setlayout,  {0 } },
+  { MODKEY,           XK_n,                     shiftview,  {.i = +1 } },
+  { MODKEY,           XK_p,                     shiftview,  {.i = -1 } },
+  { MODKEY,           XK_j,                     focusstack, {.i = +1 } },
+  { MODKEY,           XK_k,                     focusstack, {.i = -1 } },
+  { MODKEY|ShiftMask, XK_j,                     movestack,  {.i = +1 } },
+  { MODKEY|ShiftMask, XK_k,                     movestack,  {.i = -1 } },
+  { MODKEY,           XK_h,                     setmfact,   {.f = -0.05 } },
+  { MODKEY,           XK_l,                     setmfact,   {.f = +0.05 } },
+  { MODKEY,           XK_i,                     incnmaster, {.i = +1 } },
+  { MODKEY,           XK_d,                     incnmaster, {.i = -1 } },
+  { MODKEY,           XK_b,                     togglebar,  {0 } },
+  { MODKEY,           XK_c,                     killclient, {0 } },
+  { MODKEY,           XK_0,                     view,       {.ui = ~0 } },
+  { MODKEY,           XK_Tab,                   view,       {0 } },
+  { MODKEY|ShiftMask, XK_Return,                zoom,       {0 } },
+  { MODKEY|ShiftMask, XK_0,                     tag,        {.ui = ~0 } },
+  { MODKEY|ShiftMask, XK_comma,                 tagmon,     {.i = -1 } },
+  { MODKEY|ShiftMask, XK_q,                     quit,       {0 } },
 };
 
 /* buttons */
