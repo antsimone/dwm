@@ -9,15 +9,15 @@ static const int nmaster           = 1;    /* number of clients in master area *
 static const int resizehints       = 0;    /* 1 means respect size hints in tiled resizals */
 
 /* bar */
-static const int showbar           = 1;    /* 0 means no bar */
-static const int topbar            = 1;    /* 0 means bottom bar */
+static const int showbar           = 1; /* 0 means no bar */
+static const int topbar            = 1; /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:pixelsize=12" };
 
 /* colors */
-static const char col_normfg[]     = "#262626";
-static const char col_normbg[]     = "#87875f";
+static const char col_normfg[]     = "#bebebe";
+static const char col_normbg[]     = "#000000";
 static const char col_normborder[] = "#121212";
-static const char col_selfg[]      = "#87875f";
+static const char col_selfg[]      = "#ffa64f";
 static const char col_selbg[]      = "#121212";
 static const char col_selborder[]  = "#0066ff";
 
