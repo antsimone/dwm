@@ -14,11 +14,11 @@ static const int topbar            = 1; /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:pixelsize=12" };
 
 /* colors */
-static const char col_normfg[]     = "#bebebe";
-static const char col_normbg[]     = "#000000";
+static const char col_normfg[]     = "#bbc2cf";//"#faa555"; //#ffffff";
+static const char col_normbg[]     = "#121212";//"#1b1d24"; //"#000000";
 static const char col_normborder[] = "#121212";
-static const char col_selfg[]      = "#ffa64f";
-static const char col_selbg[]      = "#121212";
+static const char col_selfg[]      = "#faa555"; //"#7367a5"; //"#ffa64f";
+static const char col_selbg[]      = "#1b1d24";
 static const char col_selborder[]  = "#0066ff";
 
 static const char *colors[][3] = {
