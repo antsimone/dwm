@@ -10,15 +10,15 @@ static const int resizehints       = 0;    /* 1 means respect size hints in tile
 
 /* bar */
 static const int showbar           = 1; /* 0 means no bar */
-static const int topbar            = 0; /* 0 means bottom bar */
+static const int topbar            = 1; /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:pixelsize=12" };
 
 /* colors */
 static const char col_normfg[]     = "#262626";
-static const char col_normbg[]     = "#ded6c5"; //"#d4caa7";
+static const char col_normbg[]     = "#ded6c5";//"#d4caa7";
 static const char col_normborder[] = "#121212";
-static const char col_selfg[]      = "#121212";//"#6a621b";//"#262626"; 
-static const char col_selbg[]      = "#ccc19b";//#f6f0e1"; //"#ded6c5";
+static const char col_selfg[]      = "#121212";//"#6a621b";//"#262626";
+static const char col_selbg[]      = "#ccc19b";//"#f6f0e1"; //"#ded6c5";
 static const char col_selborder[]  = "#1111ff";//"#0066ff";
 
 static const char *colors[][3] = {
