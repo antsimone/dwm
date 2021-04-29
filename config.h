@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* window sizing */
-static const unsigned int borderpx = 2;    /* border pixel of windows */
+static const unsigned int borderpx = 1;    /* border pixel of windows */
 static const unsigned int snap     = 32;   /* snap pixel */
 static const unsigned int gappx    = 0;    /* gap pixel between windows */
 static const float mfact           = 0.55; /* factor of master area size [0.05..0.95] */
@@ -14,12 +14,12 @@ static const int topbar            = 1; /* 0 means bottom bar */
 static const char *fonts[]         = { "monospace:pixelsize=12" };
 
 /* colors */
-static const char col_normfg[]     = "#bebebe";
-static const char col_normbg[]     = "#000000";
+static const char col_normfg[]     = "#969696";
+static const char col_normbg[]     = "#121212";
 static const char col_normborder[] = "#121212";
-static const char col_selfg[]      = "#ffa64f";
-static const char col_selbg[]      = "#121212";
-static const char col_selborder[]  = "#0066ff";
+static const char col_selfg[]      = "#d89333";
+static const char col_selbg[]      = "#232323";
+static const char col_selborder[]  = "#446fbd";
 
 static const char *colors[][3] = {
   [SchemeNorm] = { col_normfg, col_normbg, col_normborder },
