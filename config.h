@@ -14,7 +14,7 @@ static const int topbar            = 1; /* 0 means bottom bar */
 
 static const char *fonts[]         = { "monospace:pixelsize=12" };
 
-static const char col_normfg[]     = "#bcbcbc"; /* "#969696" */
+static const char col_normfg[]     = "#ffffff"; //"#969696"; /* "#bcbcbc" "#969696" */
 static const char col_normbg[]     = "#121212"; /* "#232323" */
 static const char col_normborder[] = "#232323";
 static const char col_selfg[]      = "#d0913d"; /* "#dd8844" "#d89333" */
