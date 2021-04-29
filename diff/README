@@ -1,5 +1,20 @@
-pertag
-movestack
-shiftview
-center
-noborder
+<2021-04-30 Fri>
+
+hide vacant tags: Do not draw tags if not used. Makes sense.
+    - [ ] TODO mark if clients in current tag is in another one also. Then which one.
+    - [ ] TODO shiftview skips empty.
+colorbar:         Manage colors in different bar sections.
+
+git init
+--------
+
++ pertag:    Keeps layout, mwfact, barpos and nmaster per tag.
++ movestack: Move around client in focus and swap master.
++ shiftview: Move between previous/next tag.
++ center:    Add an iscentered rule to automatically center clients on the current monitor.
++ noborder:  Remove the border when there is only one window visible.
+
+unmerged
+--------
+
+xresources: Handle any settings from Xresources. Use xrdb instead -- read colors only.
