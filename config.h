@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* window sizing */
-static const unsigned int borderpx = 2;    /* border pixel of windows */
+static const unsigned int borderpx = 1;    /* border pixel of windows */
 static const unsigned int snap     = 32;   /* snap pixel */
 static const unsigned int gappx    = 0;    /* gap pixel between windows */
 static const float mfact           = 0.55; /* factor of master area size [0.05..0.95] */
@@ -9,17 +9,17 @@ static const int nmaster           = 1;    /* number of clients in master area *
 static const int resizehints       = 0;    /* 1 means respect size hints in tiled resizals */
 
 /* bar */
-static const int showbar           = 1; /* 0 means no bar */
-static const int topbar            = 1; /* 0 means bottom bar */
-static const char *fonts[]         = { "monospace:pixelsize=12" };
+static const int showbar = 1; /* 0 means no bar */
+static const int topbar  = 1; /* 0 means bottom bar */
+static const char *fonts[]  = {"monospace:pixelsize=12"};
 
 /* colors */
 static const char col_normfg[]     = "#262626";
-static const char col_normbg[]     = "#ded6c5";//"#d4caa7";
+static const char col_normbg[]     = "#ded6c5";
 static const char col_normborder[] = "#121212";
-static const char col_selfg[]      = "#121212";//"#6a621b";//"#262626";
-static const char col_selbg[]      = "#ccc19b";//"#f6f0e1"; //"#ded6c5";
-static const char col_selborder[]  = "#1111ff";//"#0066ff";
+static const char col_selfg[]      = "#121212";
+static const char col_selbg[]      = "#ccc19b";
+static const char col_selborder[]  = "#446fbd";
 
 static const char *colors[][3] = {
   [SchemeNorm] = { col_normfg, col_normbg, col_normborder },
@@ -68,7 +68,7 @@ static const Rule rules[] = {
 
 /* commands */
 static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", NULL};
+static const char *dmenucmd[] = { "dmenu_run", "-nb", col_normbg, "-nf", col_normfg, "-sb", col_selbg, "-sf", col_selfg, NULL};
 static const char *shut[]     = { "dmenu_shutdown", NULL };
 static const char *term[]     = { "st", NULL };
 static const char *browser[]  = { "firefox", NULL };
