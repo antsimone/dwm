@@ -18,12 +18,21 @@ static const char col_normfg[]     = "#ffffff"; //"#969696"; /* "#bcbcbc" "#9696
 static const char col_normbg[]     = "#121212"; /* "#232323" */
 static const char col_normborder[] = "#232323";
 static const char col_selfg[]      = "#d0913d"; /* "#dd8844" "#d89333" */
-static const char col_selbg[]      = "#232323"; /* "#1b1d24" "#2a2e38" */
+static const char col_selbg[]      = "#474747";// "#232323"; /* "#1b1d24" "#2a2e38" */
 static const char col_selborder[]  = "#446fbd";
+
+
 
 static const char *colors[][3] = {
     [SchemeNorm] = { col_normfg, col_normbg, col_normborder },
     [SchemeSel]  = { col_selfg, col_selbg,  col_selborder  },
+
+    /* text    background     null */
+    [SchemeStatus]   = { col_normfg, col_normbg,  "#000000" },
+    [SchemeTagsSel]  = { col_selfg, col_selbg,  "#000000"  },
+    [SchemeTagsNorm] = { "#969696", col_normbg ,  "#000000"  },
+    [SchemeInfoSel]  = { col_selfg, col_normbg,  "#000000"  },
+    [SchemeInfoNorm] = { col_normfg, col_normbg,  "#000000"  },
 };
 
 /* Tags */
@@ -76,8 +85,7 @@ static const Rule rules[] = {
 /* Programs and commands */
 
 static char dmenumon[2]       = "0";
-static const char *dmenucmd[] = { "dmenu_run", "-nb", col_normbg, "-nf", col_normfg, "-sb", \
-    col_selbg, "-sf", col_selfg, NULL};
+static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *shut[]     = { "dmenu_shutdown", NULL };
 static const char *term[]     = { "st", NULL };
 static const char *browser[]  = { "firefox", NULL };
