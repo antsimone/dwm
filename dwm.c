@@ -748,24 +748,29 @@ drawbar(Monitor *m)
 		drw_text(drw, m->ww - sw, 0, sw, bh, 0, stext, 0);
 	}
 
-	for (c = m->clients; c; c = c->next) {
-		occ |= c->tags == 255 ? 0 : c->tags;
-		if (c->isurgent)
-			urg |= c->tags;
-	}
-	x = 0;
-	for (i = 0; i < LENGTH(tags); i++) {
+    for (c = m->clients; c; c = c->next) {
+        occ |= c->tags == 255 ? 0 : c->tags;
+        if (c->isurgent)
+            urg |= c->tags;
+    }
+    x = 0;
+    for (i = 0; i < LENGTH(tags); i++) {
         /* do not draw vacant tags */
         if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
             continue;
-		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		x += w;
-	}
-	w = blw = TEXTW(m->ltsymbol);
-	drw_setscheme(drw, scheme[SchemeTagsNorm]);
-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+        w = TEXTW(tags[i]);
+        drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
+        drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+        /* draw indicator for client */
+        if (occ & 1 << i)
+            drw_rect(drw, x + boxs, boxs, boxw, boxw,
+                    m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
+                    urg & 1 << i);
+        x += w;
+    }
+    w = blw = TEXTW(m->ltsymbol);
+    drw_setscheme(drw, scheme[SchemeTagsNorm]);
+    x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
 	if ((w = m->ww - sw - x) > bh) {
 		if (m->sel) {

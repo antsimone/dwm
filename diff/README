@@ -1,9 +1,9 @@
 <2021-04-30 Fri>
 
-hide vacant tags: Do not draw tags if not used. Makes sense.
-    - [ ] TODO mark if clients in current tag is in another one also. Then which one.
++ hide vacant tags : Do not draw tags if not used. Makes sense.
+    * Skip last hunk : keep client indicator for different tags.
     - [ ] TODO shiftview skips empty.
-colorbar:         Manage colors in different bar sections.
++ colorbar:         Manage colors in different bar sections.
 
 git init
 --------
