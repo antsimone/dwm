@@ -19,8 +19,8 @@ static const char col_normfg[] = "#bcbcbc";
 static const char col_normbg[] = "#121212";
 static const char col_normborder[] = "#232323";
 
-static const char col_selfg[] = "#232323"; /* "#d0913d" "#dd8844" "#d89333" */
-static const char col_selbg[] = "#6da280"; /* "#6e9cb0" */
+static const char col_selfg[] = "#232323"; /* #d0913d#dd8844#d89333 */
+static const char col_selbg[] = "#6da280";/* #7bc275 */
 static const char col_selborder[] = "#446fbd";
 
 static const char col_gray1[] = "#696969";
@@ -33,8 +33,8 @@ static const char *colors[][3] = {
     /* fg    bg     null */
     [SchemeStatus]   = { col_normfg, col_normbg, "#000000" },
     [SchemeTagsSel]  = { col_normbg, col_selbg, "#000000" },
-    [SchemeTagsNorm] = { "#777777", col_normbg,  "#000000" },
-    [SchemeInfoSel]  = { "#7d8fa3", col_normbg, "#000000" },
+    [SchemeTagsNorm] = { "#777777", col_normbg, "#000000" },
+    [SchemeInfoSel]  = { "#a991f1", col_normbg, "#000000" }, /* #5699af */
     [SchemeInfoNorm] = { col_normfg, col_normbg, "#000000" },
 };
 
@@ -92,7 +92,7 @@ static const char *dmenucmd[] = { "dmenu_run", NULL};
 static const char *shut[]     = { "dmenu_shutdown", NULL };
 static const char *term[]     = { "st", NULL };
 static const char *browser[]  = { "firefox", NULL };
-static const char *fm[]       = { "pcmanfm", NULL };
+/*static const char *fm[]       = { "pcmanfm", NULL };*/
 static const char *xbinc[]    = { "xbacklight", "-inc", "10", NULL };
 static const char *xbdec[]    = { "xbacklight", "-dec", "10", NULL };
 static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
@@ -123,8 +123,8 @@ static Key keys[] = {
   { MODKEY,           XK_Return,                spawn,      {.v = term} },
   { MODKEY,           XK_e,                     spawn,      {.v = emacs} },
   { MODKEY,           XK_comma,                 spawn,      {.v = browser} },
-  { MODKEY,           XK_f,                     spawn,      {.v = fm} },
-  { MODKEY,           XK_space,                 setlayout,  {0 } },
+  /*{ MODKEY,           XK_f,                     spawn,      {.v = fm} },*/
+ { MODKEY,           XK_space,                 setlayout,  {0 } },
   { MODKEY,           XK_n,                     shiftview,  {.i = +1 } },
   { MODKEY,           XK_p,                     shiftview,  {.i = -1 } },
   { MODKEY,           XK_j,                     focusstack, {.i = +1 } },
