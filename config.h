@@ -12,26 +12,29 @@ static const unsigned int gappx    = 0;    /* gap pixel between windows */
 static const int showbar           = 1; /* 0 means no bar */
 static const int topbar            = 1; /* 0 means bottom bar */
 
-static const char *fonts[]         = { "Terminus (TTF):pixelsize=12" };
+//static const char *fonts[]         = { "Terminus (TTF):size=11" };
+static const char *fonts[] = { "monospace:size=9" };
 
-static const char col_normfg[]     = "#969696"; /* "#bcbcbc" */
-static const char col_normbg[]     = "#121212"; /* "#232323" */
+static const char col_normfg[] = "#bcbcbc";
+static const char col_normbg[] = "#121212";
 static const char col_normborder[] = "#232323";
-static const char col_selfg[]      = "#232323"; //"#d0913d"; /* "#dd8844" "#d89333" */
-static const char col_selbg[]      = "#87875f"; //"#474747"; /* "#1b1d24" "#2a2e38" */
-static const char col_selborder[]  = "#446fbd";
 
+static const char col_selfg[] = "#232323"; /* "#d0913d" "#dd8844" "#d89333" */
+static const char col_selbg[] = "#6da280"; /* "#6e9cb0" */
+static const char col_selborder[] = "#446fbd";
 
+static const char col_gray1[] = "#696969";
+static const char col_gray2[] = "#969696";
 
 static const char *colors[][3] = {
     [SchemeNorm] = { col_normfg, col_normbg, col_normborder },
     [SchemeSel]  = { col_selfg, col_selbg,  col_selborder  },
 
-    /* fg    background     null */
+    /* fg    bg     null */
     [SchemeStatus]   = { col_normfg, col_normbg, "#000000" },
-    [SchemeTagsSel]  = { col_selfg, col_selbg, "#000000" },
-    [SchemeTagsNorm] = { "#696969", col_normbg, "#000000" },
-    [SchemeInfoSel]  = { col_normfg, col_normbg, "#000000" },
+    [SchemeTagsSel]  = { col_normbg, col_selbg, "#000000" },
+    [SchemeTagsNorm] = { "#777777", col_normbg,  "#000000" },
+    [SchemeInfoSel]  = { "#7d8fa3", col_normbg, "#000000" },
     [SchemeInfoNorm] = { col_normfg, col_normbg, "#000000" },
 };
 
