@@ -1,7 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-
 /* Appearance */
-
 static const int nmaster           = 1;    /* number of clients in master area */
 static const int resizehints       = 0;    /* 1 means respect size hints in tiled resizals */
 static const float mfact           = 0.55; /* factor of master area size [0.05..0.95] */
@@ -13,7 +11,7 @@ static const int showbar           = 1; /* 0 means no bar */
 static const int topbar            = 1; /* 0 means bottom bar */
 
 //static const char *fonts[]         = { "Terminus (TTF):size=11" };
-static const char *fonts[] = { "sans:size=9" };
+static const char *fonts[] = { "monospace:size=9" };
 
 static const char col_normfg[] = "#bcbcbc";
 static const char col_normbg[] = "#121212";
@@ -34,13 +32,13 @@ static const char *colors[][3] = {
     [SchemeStatus]   = { col_normfg, col_normbg, "#000000" },
     [SchemeTagsSel]  = { col_normbg, col_selbg, "#000000" },
     [SchemeTagsNorm] = { "#777777", col_normbg, "#000000" },
-    [SchemeInfoSel]  = { "#d0913d", col_normbg, "#000000" }, /* #5699af */
+    [SchemeInfoSel]  = { "#a991f1", col_normbg, "#000000" }, /* #a991f1#6357ac#5699af */
     [SchemeInfoNorm] = { col_normfg, col_normbg, "#000000" },
 };
 
 /* Tags */
 
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3" };
 
 /* Layouts */
 
@@ -221,3 +219,4 @@ shiftview(const Arg *arg) {
 
     view(&shifted);
 }
+
