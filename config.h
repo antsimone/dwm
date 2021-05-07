@@ -17,8 +17,8 @@ static const char col_normfg[] = "#bcbcbc";
 static const char col_normbg[] = "#121212";
 static const char col_normborder[] = "#232323";
 
-static const char col_selfg[] = "#232323"; /* #d0913d#dd8844#d89333 */
-static const char col_selbg[] = "#6da280";/* #7bc275 */
+static const char col_selfg[] = "#ffffff"; /* #232323#d0913d#dd8844#d89333 */
+static const char col_selbg[] = "#29bb89";
 static const char col_selborder[] = "#446fbd";
 
 static const char col_gray1[] = "#696969";
@@ -31,8 +31,8 @@ static const char *colors[][3] = {
     /* fg    bg     null */
     [SchemeStatus]   = { col_normfg, col_normbg, "#000000" },
     [SchemeTagsSel]  = { col_normbg, col_selbg, "#000000" },
-    [SchemeTagsNorm] = { "#777777", col_normbg, "#000000" },
-    [SchemeInfoSel]  = { "#a991f1", col_normbg, "#000000" }, /* #a991f1#6357ac#5699af */
+    [SchemeTagsNorm] = { "#bcbcbc", col_normbg, "#000000" },
+    [SchemeInfoSel]  = { "#bd93f9", col_normbg, "#000000" }, /* #a991f1 */
     [SchemeInfoNorm] = { col_normfg, col_normbg, "#000000" },
 };
 
