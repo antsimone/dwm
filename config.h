@@ -10,8 +10,8 @@ static const unsigned int gappx    = 0;    /* gap pixel between windows */
 static const int showbar           = 1; /* 0 means no bar */
 static const int topbar            = 1; /* 0 means bottom bar */
 
-//static const char *fonts[]         = { "Terminus (TTF):size=11" };
-static const char *fonts[] = { "monospace:size=11" };
+/* static const char *fonts[]         = { "Terminus (TTF):size=11" }; */
+static const char *fonts[] = { "monospace:size=9" };
 
 static const char col_normfg[] = "#bcbcbc";
 static const char col_normbg[] = "#121212";
@@ -32,7 +32,7 @@ static const char *colors[][3] = {
     [SchemeStatus]   = { col_normfg, col_normbg, "#000000" },
     [SchemeTagsSel]  = { col_normbg, col_selbg, "#000000" },
     [SchemeTagsNorm] = { "#bcbcbc", col_normbg, "#000000" },
-    [SchemeInfoSel]  = { "#bd93f9", col_normbg, "#000000" }, /* #a991f1 */
+    [SchemeInfoSel]  = { "#ffb86c", col_normbg, "#000000" }, /* #a991f1 */
     [SchemeInfoNorm] = { col_normfg, col_normbg, "#000000" },
 };
 
@@ -93,7 +93,7 @@ static const char *browser[]  = { "firefox", NULL };
 /*static const char *fm[]       = { "pcmanfm", NULL };*/
 static const char *xbinc[]    = { "xbacklight", "-inc", "10", NULL };
 static const char *xbdec[]    = { "xbacklight", "-dec", "10", NULL };
-static const char *emacs[]    = { "emacsclient", "-ca", "", NULL };
+static const char *emacs[]    = { "emacsclient", "-c", "", NULL };
 
 /* Declare custom functions */
 
