@@ -30,9 +30,9 @@ static const char *colors[][3] = {
 
     /* fg    bg     null */
     [SchemeStatus]   = { col_normfg, col_normbg, "#000000" },
-    [SchemeTagsSel]  = { col_normbg, col_selbg, "#000000" },
+    [SchemeTagsSel]  = { "#ffb86c", "#1c1f24", "#000000" },
     [SchemeTagsNorm] = { "#bcbcbc", col_normbg, "#000000" },
-    [SchemeInfoSel]  = { "#ffb86c", col_normbg, "#000000" }, /* #a991f1 */
+    [SchemeInfoSel]  = { col_normfg, col_normbg, "#000000" }, /* #a991f1 */
     [SchemeInfoNorm] = { col_normfg, col_normbg, "#000000" },
 };
 
